@@ -1,0 +1,8 @@
+name: Yep
+version: '${project.version}'
+main: ooo.foooooooooooo.yep.Yep
+api-version: 1.18
+prefix: yep
+authors: [ fooooooooooooooo ]
+description: Plugin that forwards death messages and similar events to Velocity proxy plugins
+website: https://github.com/fooooooooooooooo/Yep
