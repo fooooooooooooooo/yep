@@ -2,7 +2,8 @@ package ooo.foooooooooooo.yep;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import net.md_5.bungee.chat.TranslationRegistry;
+import ooo.foooooooooooo.yep.messages.AdvancementMessage;
+import ooo.foooooooooooo.yep.messages.DeathMessage;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -19,49 +20,32 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        var translated = getTranslatedMessage(event.deathMessage());
+        var player = event.getEntity();
+        var name = player.getName();
+        var message = getComponentText(event.deathMessage()).replace(name + " ", "");
 
-        var result = String.format(translated, event.getEntity().getName());
-
-        PluginMessenger.sendMessage(event.getPlayer(), MessageType.DEATH, result);
+        PluginMessenger.sendMessage(player, new DeathMessage(message));
     }
 
     @EventHandler
     public void onAdvancement(PlayerAdvancementDoneEvent event) {
         var component = event.message();
         if (component == null) {
-            Yep.logger.fine("Ignoring unsent advancement");
+            Yep.logger.finest("Ignoring unsent advancement");
             return;
         }
 
-        var translated = getTranslatedMessage(component);
+        var advancement = event.getAdvancement().getDisplay();
 
-        var advancementDisplay = event.getAdvancement().getDisplay();
+        if (advancement == null) return;
 
-        if (advancementDisplay == null) {
-            Yep.logger.info("Advancement display is null");
-            return;
-        }
+        var title = getComponentText(advancement.title());
+        var description = getComponentText(advancement.description());
 
-        var translatedAdvancement = getTranslatedMessage(advancementDisplay.title().asComponent());
-
-        if (translatedAdvancement == null) {
-            Yep.logger.warning("Failed to translate advancement: " + getMessageString(advancementDisplay.title().asComponent()));
-            return;
-        }
-
-        String result = String.format(translated, event.getPlayer().getName(), translatedAdvancement);
-
-        PluginMessenger.sendMessage(event.getPlayer(), MessageType.ADVANCEMENT, result);
+        PluginMessenger.sendMessage(event.getPlayer(), new AdvancementMessage(title, description));
     }
 
-    private String getTranslatedMessage(Component component) {
-        return TranslationRegistry.INSTANCE.translate(
-                getMessageString(component)
-        );
-    }
-
-    private String getMessageString(Component component) {
+    private String getComponentText(Component component) {
         return PlainTextComponentSerializer.plainText().serialize(Objects.requireNonNull(component));
     }
 }

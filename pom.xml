@@ -6,14 +6,14 @@
 
     <groupId>ooo.foooooooooooo</groupId>
     <artifactId>yep</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Yep</name>
 
     <description>Plugin that forwards death messages and similar events to Velocity proxy plugins</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <url>https://github.com/fooooooooooooooo/Yep</url>
@@ -27,8 +27,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>10</source>
-                    <target>10</target>
+                    <release>17</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -71,8 +70,16 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.18.1-R0.1-SNAPSHOT</version>
+            <version>1.19.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub fooooooooooooooo Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/fooooooooooooooo/yep-paper</url>
+        </repository>
+    </distributionManagement>
 </project>

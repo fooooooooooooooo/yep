@@ -1,4 +1,4 @@
-package ooo.foooooooooooo.yep;
+package ooo.foooooooooooo.yep.messages;
 
 public enum MessageType {
     DEATH,
