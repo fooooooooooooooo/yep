@@ -1,27 +1,28 @@
 package ooo.foooooooooooo.yep;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import net.fabricmc.api.ModInitializer;
+import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+public final class Yep implements ModInitializer {
 
-public final class Yep extends JavaPlugin {
+    public static String MOD_ID = "yep";
+    public static Identifier PLUGIN_CHANNEL = new Identifier("velocity", MOD_ID);
 
     public static Yep instance;
-    public static Logger logger;
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public Yep() {
         instance = this;
     }
 
     @Override
-    public void onEnable() {
-        logger = getServer().getLogger();
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
-        logger.info("Yep is enabled!");
-    }
+    public void onInitialize() {
+        EventListener.initialize();
 
-    @Override
-    public void onDisable() {
-        logger.info("Yep is disabled!");
+        System.out.println("SHITFUCK SHIT FUCK SHIT FUCK");
+
+        LOGGER.info("Yep is enabled!");
     }
 }

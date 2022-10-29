@@ -1,51 +1,43 @@
 package ooo.foooooooooooo.yep;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.minecraft.advancement.Advancement;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import ooo.foooooooooooo.yep.messages.AdvancementMessage;
 import ooo.foooooooooooo.yep.messages.DeathMessage;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
-import java.util.Objects;
-
-public class EventListener implements Listener {
-
-    public EventListener() {
-        Yep.instance.getServer().getMessenger().registerOutgoingPluginChannel(Yep.instance, "velocity:yep");
-        Yep.logger.fine("Registered velocity:yep channel");
+public class EventListener {
+    public static void initialize() {
+        ServerPlayerEvents.ALLOW_DEATH.register((player, source, damageAmount) -> {
+            EventListener.onPlayerDeath(player, source);
+            return true;
+        });
     }
 
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        var player = event.getEntity();
-        var name = player.getName();
-        var message = getComponentText(event.deathMessage()).replace(name + " ", "");
+    private static void onPlayerDeath(ServerPlayerEntity player, DamageSource source) {
+        var name = player.getDisplayName().getString();
+        var message = getComponentText(source.getDeathMessage(player)).replace(name + " ", "");
 
         PluginMessenger.sendMessage(player, new DeathMessage(message));
     }
 
-    @EventHandler
-    public void onAdvancement(PlayerAdvancementDoneEvent event) {
-        var component = event.message();
-        if (component == null) {
-            Yep.logger.finest("Ignoring unsent advancement");
+    public static void onAdvancement(ServerPlayerEntity player, Advancement advancement) {
+        var display = advancement.getDisplay();
+
+        if (display == null || display.isHidden()) {
+            Yep.LOGGER.trace("Ignoring unsent display");
             return;
         }
 
-        var advancement = event.getAdvancement().getDisplay();
+        var title = getComponentText(display.getTitle());
+        var description = getComponentText(display.getDescription());
 
-        if (advancement == null) return;
-
-        var title = getComponentText(advancement.title());
-        var description = getComponentText(advancement.description());
-
-        PluginMessenger.sendMessage(event.getPlayer(), new AdvancementMessage(title, description));
+        PluginMessenger.sendMessage(player, new AdvancementMessage(title, description));
     }
 
-    private String getComponentText(Component component) {
-        return PlainTextComponentSerializer.plainText().serialize(Objects.requireNonNull(component));
+    private static String getComponentText(Text component) {
+        return component.getString();
     }
 }

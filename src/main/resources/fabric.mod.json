@@ -1,0 +1,32 @@
+{
+    "schemaVersion": 1,
+    "id": "yep",
+    "version": "${version}",
+
+    "name": "Yep",
+    "description": "Plugin that forwards death messages and similar events to Velocity proxy plugins",
+    "authors": [
+        "fooooooooooooooo"
+    ],
+    "contact": {
+        "homepage": "https://github.com/fooooooooooooooo/Yep",
+        "sources": "https://github.com/fooooooooooooooo/Yep"
+    },
+
+    "license": "MIT",
+    "icon": "assets/modid/icon.png",
+
+    "environment": "server",
+    "entrypoints": {
+        "main": [
+            "ooo.foooooooooooo.yep.Yep"
+        ]
+    },
+
+    "depends": {
+        "fabricloader": ">=0.14.9",
+        "fabric-api": "*",
+        "minecraft": "~1.19",
+        "java": ">=17"
+    }
+}
