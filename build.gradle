@@ -11,9 +11,6 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    maven {
-        url 'https://maven.bymartrixx.me'
-    }
 }
 
 dependencies {
@@ -22,8 +19,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    modImplementation "me.bymartrixx.player-events:api:${project.player_events_api_version}"
 }
 
 processResources {

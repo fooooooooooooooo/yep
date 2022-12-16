@@ -20,8 +20,6 @@ public final class Yep implements ModInitializer {
     public void onInitialize() {
         EventListener.initialize();
 
-        System.out.println("SHITFUCK SHIT FUCK SHIT FUCK");
-
         LOGGER.info("Yep is enabled!");
     }
 }
