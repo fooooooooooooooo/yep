@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 public class PluginMessenger {
     public static void sendMessage(ServerPlayerEntity player, IYepMessage message) {
-        var name = player.getDisplayName().getString();
+        var name = player.getName().getString();
         var type = message.getType().name();
 
         String msg = String.format("%s:%s:%s", name, type, message);
