@@ -5,6 +5,7 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import ooo.foooooooooooo.yep.events.AdvancementCallback;
 import ooo.foooooooooooo.yep.messages.AdvancementMessage;
 import ooo.foooooooooooo.yep.messages.DeathMessage;
 
@@ -14,6 +15,7 @@ public class EventListener {
             EventListener.onPlayerDeath(player, source);
             return true;
         });
+        AdvancementCallback.EVENT.register(EventListener::onAdvancement);
     }
 
     private static void onPlayerDeath(ServerPlayerEntity player, DamageSource source) {

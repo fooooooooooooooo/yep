@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class Yep implements ModInitializer {
-
     public static String MOD_ID = "yep";
     public static Identifier PLUGIN_CHANNEL = new Identifier("velocity", MOD_ID);
 

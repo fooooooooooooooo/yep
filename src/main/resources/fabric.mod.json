@@ -22,6 +22,9 @@
             "ooo.foooooooooooo.yep.Yep"
         ]
     },
+    "mixins": [
+        "yep.mixins.json"
+    ],
 
     "depends": {
         "fabricloader": ">=0.14.9",

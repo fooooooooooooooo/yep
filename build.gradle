@@ -23,7 +23,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-  modImplementation "me.bymartrixx.player-events:api:${project.player_events_api_version}"
+    modImplementation "me.bymartrixx.player-events:api:${project.player_events_api_version}"
 }
 
 processResources {
