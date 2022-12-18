@@ -22,7 +22,7 @@ public class EventListener {
     // TODO: there may be a better way to do this?
     private static void onEntityDeath(LivingEntity entity, DamageSource damageSource) {
         if (entity instanceof ServerPlayerEntity player) {
-            var name = player.getName().getString();
+            var name = player.getDisplayName().getString();
             var message = getComponentText(damageSource.getDeathMessage(player)).replace(name + " ", "");
 
             PluginMessenger.sendMessage(player, new DeathMessage(message));
