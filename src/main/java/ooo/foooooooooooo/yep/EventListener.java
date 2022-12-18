@@ -12,15 +12,12 @@ import ooo.foooooooooooo.yep.messages.DeathMessage;
 
 public class EventListener {
     public static void initialize() {
-        ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
-            EventListener.onEntityDeath(entity, damageSource);
-            return true;
-        });
+        ServerLivingEntityEvents.AFTER_DEATH.register(EventListener::afterEntityDeath);
         AdvancementCallback.EVENT.register(EventListener::onAdvancement);
     }
 
     // TODO: there may be a better way to do this?
-    private static void onEntityDeath(LivingEntity entity, DamageSource damageSource) {
+    private static void afterEntityDeath(LivingEntity entity, DamageSource damageSource) {
         if (entity instanceof ServerPlayerEntity player) {
             var name = player.getDisplayName().getString();
             var message = getComponentText(damageSource.getDeathMessage(player)).replace(name + " ", "");
