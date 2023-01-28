@@ -1,5 +1,7 @@
-# yep-paper
+Companion Paper plugin for [VelocityDiscord](https://github.com/fooooooooooooooo/VelocityDiscord)
 
-Companion plugin for VelocityDiscord
+Broadcasts death / advancement messages to VelocityDiscord (or others) over the plugin channel "velocity:yep"
 
-Allows VelocityDiscord to send death/advancement messages by sending them on the plugin channel velocity:yep
+[Fabric version](https://github.com/fooooooooooooooo/yep-paper/tree/fabric)
+
+[Forge version](https://github.com/fooooooooooooooo/yep-paper/tree/forge)
