@@ -1,51 +1,43 @@
 package ooo.foooooooooooo.yep;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import net.minecraft.advancement.AdvancementDisplay;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import ooo.foooooooooooo.yep.messages.AdvancementMessage;
 import ooo.foooooooooooo.yep.messages.DeathMessage;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
-import java.util.Objects;
+public class EventListener {
+    @SubscribeEvent
+    public static void onDeathEvent(LivingDeathEvent event) {
+        if (event.getEntityLiving() instanceof ServerPlayerEntity player) {
+            var username = player.getDisplayName().getString();
+            var message = getComponentText(event.getSource().getDeathMessage(player)).replace(username + " ", "");
 
-public class EventListener implements Listener {
-
-    public EventListener() {
-        Yep.instance.getServer().getMessenger().registerOutgoingPluginChannel(Yep.instance, "velocity:yep");
-        Yep.logger.fine("Registered velocity:yep channel");
+            PluginMessenger.sendMessage(player, new DeathMessage(message));
+        }
     }
 
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        var player = event.getEntity();
-        var name = player.getName();
-        var message = getComponentText(event.deathMessage()).replace(name + " ", "");
+    @SubscribeEvent
+    public static void onAdvancementEvent(AdvancementEvent event) {
+        AdvancementDisplay display = event.getAdvancement().getDisplay();
 
-        PluginMessenger.sendMessage(player, new DeathMessage(message));
-    }
-
-    @EventHandler
-    public void onAdvancement(PlayerAdvancementDoneEvent event) {
-        var component = event.message();
-        if (component == null) {
-            Yep.logger.finest("Ignoring unsent advancement");
+        if (display == null || display.isHidden()) {
+            Yep.LOGGER.trace("Ignoring unsent display");
             return;
         }
 
-        var advancement = event.getAdvancement().getDisplay();
+        if (display.shouldAnnounceToChat()) {
+            var title = getComponentText(display.getTitle());
+            var description = getComponentText(display.getDescription());
 
-        if (advancement == null) return;
-
-        var title = getComponentText(advancement.title());
-        var description = getComponentText(advancement.description());
-
-        PluginMessenger.sendMessage(event.getPlayer(), new AdvancementMessage(title, description));
+            PluginMessenger.sendMessage((ServerPlayerEntity) event.getPlayer(), new AdvancementMessage(title, description));
+        }
     }
 
-    private String getComponentText(Component component) {
-        return PlainTextComponentSerializer.plainText().serialize(Objects.requireNonNull(component));
+    private static String getComponentText(Text component) {
+        return component.getString();
     }
 }

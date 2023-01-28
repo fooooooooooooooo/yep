@@ -1,27 +1,36 @@
 package ooo.foooooooooooo.yep;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import net.minecraft.util.Identifier;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.IExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.NetworkConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.logging.Logger;
+import static net.minecraftforge.versions.forge.ForgeVersion.MOD_ID;
 
-public final class Yep extends JavaPlugin {
-
-    public static Yep instance;
-    public static Logger logger;
+@Mod("yep")
+public final class Yep {
+    public static Identifier PLUGIN_CHANNEL = new Identifier("velocity", MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public Yep() {
-        instance = this;
+        IEventBus MOD_BUS = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // make sure the client doesn't think it needs yep to connect
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+
+        MinecraftForge.EVENT_BUS.register(EventListener.class);
+
+        MOD_BUS.addListener(this::commonSetup);
     }
 
-    @Override
-    public void onEnable() {
-        logger = getServer().getLogger();
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
-        logger.info("Yep is enabled!");
-    }
-
-    @Override
-    public void onDisable() {
-        logger.info("Yep is disabled!");
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        LOGGER.info("Yep is enabled!");
     }
 }
