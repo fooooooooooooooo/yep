@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = "MIT"
+
+[[mods]]
+modId = "yep"
+version = "${version}"
+displayName = "Yep"
+logoFile = "icon.png"
+authors = "foooooooooooo, unilock"
+description = '''
+Send death / advancement messages to VelocityDiscord over the plugin channel "velocity:yep"
+'''
+
+[[dependencies.yep]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.yep]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2,)"
+ordering = "NONE"
+side = "BOTH"

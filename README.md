@@ -1,5 +1,5 @@
-# yep
+# yep-forge
 
-Companion Fabric mod for VelocityDiscord
+Companion Forge mod for [VelocityDiscord](https://github.com/fooooooooooooooo/VelocityDiscord)
 
-Allows VelocityDiscord to send death/advancement messages by sending them on the plugin channel velocity:yep
+Sends death / advancement messages to VelocityDiscord over the plugin channel "velocity:yep"

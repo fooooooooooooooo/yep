@@ -1,25 +1,36 @@
 package ooo.foooooooooooo.yep;
 
-import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.IExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.NetworkConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public final class Yep implements ModInitializer {
-    public static String MOD_ID = "yep";
+import static net.minecraftforge.versions.forge.ForgeVersion.MOD_ID;
+
+@Mod("yep")
+public final class Yep {
     public static Identifier PLUGIN_CHANNEL = new Identifier("velocity", MOD_ID);
-
-    public static Yep instance;
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public Yep() {
-        instance = this;
+        IEventBus MOD_BUS = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // make sure the client doesn't think it needs yep to connect
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+
+        MinecraftForge.EVENT_BUS.register(EventListener.class);
+
+        MOD_BUS.addListener(this::commonSetup);
     }
 
-    @Override
-    public void onInitialize() {
-        EventListener.initialize();
-
+    private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Yep is enabled!");
     }
 }

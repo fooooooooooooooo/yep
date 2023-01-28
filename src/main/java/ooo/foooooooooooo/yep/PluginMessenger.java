@@ -1,8 +1,8 @@
 package ooo.foooooooooooo.yep;
 
 import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import ooo.foooooooooooo.yep.messages.IYepMessage;
 
@@ -20,6 +20,8 @@ public class PluginMessenger {
         // TODO: wrappedBuffer instead of copiedBuffer is best here?
         var byteBuf = new PacketByteBuf(Unpooled.wrappedBuffer(msg.getBytes(StandardCharsets.UTF_8)));
 
-        ServerPlayNetworking.send(player, Yep.PLUGIN_CHANNEL, byteBuf);
+        // i'd rather not deal with the travesty that is Forge's packet system
+        // ...hopefully this doesn't change anytime soon though
+        player.networkHandler.sendPacket(new CustomPayloadS2CPacket(Yep.PLUGIN_CHANNEL, byteBuf));
     }
 }
