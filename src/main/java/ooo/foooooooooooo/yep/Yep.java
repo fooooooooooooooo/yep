@@ -12,11 +12,11 @@ import net.minecraftforge.network.NetworkConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static net.minecraftforge.versions.forge.ForgeVersion.MOD_ID;
-
 @Mod("yep")
 public final class Yep {
+    public static String MOD_ID = "yep";
     public static Identifier PLUGIN_CHANNEL = new Identifier("velocity", MOD_ID);
+
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public Yep() {
