@@ -39,4 +39,5 @@ replay_*.log
 *.hprof
 *.jfr
 
-/.m2
+.m2/
+target/
