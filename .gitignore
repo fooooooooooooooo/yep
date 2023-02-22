@@ -94,4 +94,8 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-.m2/settings.xml
+.m2/
+run/
+.gradle/
+.idea/
+build/

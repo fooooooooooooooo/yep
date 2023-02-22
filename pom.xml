@@ -6,10 +6,10 @@
 
     <groupId>ooo.foooooooooooo</groupId>
     <artifactId>yep</artifactId>
-    <version>1.0.0</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
-    <name>Yep</name>
+    <name>yep-paper</name>
 
     <description>Plugin that forwards death messages and similar events to Velocity proxy plugins</description>
     <properties>
