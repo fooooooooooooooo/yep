@@ -1,43 +1,42 @@
 package ooo.foooooooooooo.yep;
 
-import net.minecraft.advancement.AdvancementDisplay;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.stats.Achievement;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.AdvancementEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import ooo.foooooooooooo.yep.messages.AdvancementMessage;
+import net.minecraftforge.event.entity.player.AchievementEvent;
+import ooo.foooooooooooo.yep.messages.AchievementMessage;
 import ooo.foooooooooooo.yep.messages.DeathMessage;
 
 public class EventListener {
     @SubscribeEvent
-    public static void onDeathEvent(LivingDeathEvent event) {
-        if (event.getEntityLiving() instanceof ServerPlayerEntity player) {
-            var username = player.getDisplayName().getString();
-            var message = getComponentText(event.getSource().getDeathMessage(player)).replace(username + " ", "");
+    public void onDeathEvent(LivingDeathEvent event) {
+        if (event.entityLiving instanceof EntityPlayerMP player) {
+            var username = player.getDisplayName();
+            var message = getComponentText(event.source.func_151519_b(player)).replace(username + " ", "");
 
             PluginMessenger.sendMessage(player, new DeathMessage(message));
         }
     }
 
     @SubscribeEvent
-    public static void onAdvancementEvent(AdvancementEvent event) {
-        AdvancementDisplay display = event.getAdvancement().getDisplay();
+    public void onAchievementEvent(AchievementEvent event) {
+        Achievement achievement = event.achievement;
 
-        if (display == null || display.isHidden()) {
-            Yep.LOGGER.trace("Ignoring unsent display");
+        if (event.achievement.isIndependent) {
+            Yep.LOGGER.trace("Ignoring local achievement");
             return;
         }
 
-        if (display.shouldAnnounceToChat()) {
-            var title = getComponentText(display.getTitle());
-            var description = getComponentText(display.getDescription());
+        var title = getComponentText(new ChatComponentTranslation(achievement.statId));
+        var description = getComponentText(new ChatComponentTranslation(achievement.statId + ".desc"));
 
-            PluginMessenger.sendMessage((ServerPlayerEntity) event.getPlayer(), new AdvancementMessage(title, description));
-        }
+        PluginMessenger.sendMessage((EntityPlayerMP) event.entityPlayer, new AchievementMessage(title, description));
     }
 
-    private static String getComponentText(Text component) {
-        return component.getString();
+    private static String getComponentText(IChatComponent component) {
+        return component.getUnformattedText();
     }
 }
