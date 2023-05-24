@@ -1,10 +1,10 @@
 package ooo.foooooooooooo.yep.messages;
 
-public class AdvancementMessage implements IYepMessage {
+public class AchievementMessage implements IYepMessage {
     private final String title;
     private final String description;
 
-    public AdvancementMessage(String title, String description) {
+    public AchievementMessage(String title, String description) {
         this.title = title;
         this.description = description;
     }

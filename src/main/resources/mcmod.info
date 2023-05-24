@@ -1,0 +1,21 @@
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "Forwards death messages and similar events to Velocity proxy plugins",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "https://github.com/fooooooooooooooo/yep",
+		"updateUrl": "",
+		"authorList": ["fooooooooooooooo", "unilock"],
+		"credits": "",
+		"logoFile": "icon.png",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": [],
+		"dependants": [],
+		"useDependencyInformation": true
+	}]
+}
