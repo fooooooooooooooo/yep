@@ -12,7 +12,7 @@ import ooo.foooooooooooo.yep.messages.DeathMessage;
 public class EventListener {
     @SubscribeEvent
     public static void onDeathEvent(LivingDeathEvent event) {
-        if (event.getEntityLiving() instanceof ServerPlayerEntity player) {
+        if (event.getEntity() instanceof ServerPlayerEntity player) {
             var username = player.getDisplayName().getString();
             var message = getComponentText(event.getSource().getDeathMessage(player)).replace(username + " ", "");
 
@@ -21,7 +21,7 @@ public class EventListener {
     }
 
     @SubscribeEvent
-    public static void onAdvancementEvent(AdvancementEvent event) {
+    public static void onAdvancementEvent(AdvancementEvent.AdvancementEarnEvent event) {
         AdvancementDisplay display = event.getAdvancement().getDisplay();
 
         if (display == null || display.isHidden()) {
@@ -33,7 +33,7 @@ public class EventListener {
             var title = getComponentText(display.getTitle());
             var description = getComponentText(display.getDescription());
 
-            PluginMessenger.sendMessage((ServerPlayerEntity) event.getPlayer(), new AdvancementMessage(title, description));
+            PluginMessenger.sendMessage((ServerPlayerEntity) event.getEntity(), new AdvancementMessage(title, description));
         }
     }
 
