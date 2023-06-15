@@ -7,7 +7,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
-import ooo.foooooooooooo.yep.messages.AchievementMessage;
+import ooo.foooooooooooo.yep.messages.AdvancementMessage;
 import ooo.foooooooooooo.yep.messages.DeathMessage;
 
 public class EventListener {
@@ -33,7 +33,7 @@ public class EventListener {
         var title = getComponentText(new ChatComponentTranslation(achievement.statId));
         var description = getComponentText(new ChatComponentTranslation(achievement.statId + ".desc"));
 
-        PluginMessenger.sendMessage((EntityPlayerMP) event.entityPlayer, new AchievementMessage(title, description));
+                PluginMessenger.sendMessage((EntityPlayerMP) event.entityPlayer, new AdvancementMessage(title, description));
     }
 
     private static String getComponentText(IChatComponent component) {
