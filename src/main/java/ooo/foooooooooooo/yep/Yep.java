@@ -28,7 +28,7 @@ public class Yep {
 
     // make sure the client doesn't think it needs yep to connect
     @NetworkCheckHandler
-    public boolean checkModList(Map<String, String> modList, Side side) {
+    public boolean checkModLists(Map<String, String> modList, Side side) {
         return true;
     }
 }
