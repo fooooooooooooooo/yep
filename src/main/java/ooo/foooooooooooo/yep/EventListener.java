@@ -24,7 +24,7 @@ public class EventListener {
     public static void onAdvancementEvent(AdvancementEvent event) {
         AdvancementDisplay display = event.getAdvancement().getDisplay();
 
-        if (display == null || display.isHidden()) {
+        if (display == null) {
             Yep.LOGGER.trace("Ignoring unsent display");
             return;
         }
