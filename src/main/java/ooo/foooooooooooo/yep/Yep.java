@@ -1,11 +1,11 @@
 package ooo.foooooooooooo.yep;
 
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.DedicatedServerModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Yep implements ModInitializer {
+public final class Yep implements DedicatedServerModInitializer {
     public static String MOD_ID = "yep";
     public static Identifier PLUGIN_CHANNEL = new Identifier("velocity", MOD_ID);
 
@@ -17,7 +17,7 @@ public final class Yep implements ModInitializer {
     }
 
     @Override
-    public void onInitialize() {
+    public void onInitializeServer() {
         EventListener.initialize();
 
         LOGGER.info("Yep is enabled!");
