@@ -10,8 +10,8 @@
         "unilock"
     ],
     "contact": {
-        "homepage": "https://github.com/fooooooooooooooo/yep/tree/fabric/1.20.1",
-        "sources": "https://github.com/fooooooooooooooo/yep/tree/fabric/1.20.1"
+        "homepage": "https://github.com/fooooooooooooooo/yep/tree/fabric/1.20",
+        "sources": "https://github.com/fooooooooooooooo/yep/tree/fabric/1.20"
     },
 
     "license": "MIT",
@@ -30,7 +30,7 @@
     "depends": {
         "fabricloader": "*",
         "fabric-api": "*",
-        "minecraft": "~1.20.1",
+        "minecraft": "~1.20",
         "java": ">=17"
     }
 }
