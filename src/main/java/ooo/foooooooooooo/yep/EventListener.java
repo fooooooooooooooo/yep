@@ -14,7 +14,7 @@ public class EventListener {
     @SubscribeEvent
     public void onDeathEvent(LivingDeathEvent event) {
         if (event.entityLiving instanceof EntityPlayerMP player) {
-            var username = player.getDisplayName();
+            var username = player.getCommandSenderName();
             // func_151519_b() = get death message from source
             var message = getComponentText(event.source.func_151519_b(player)).replace(username + " ", "");
 

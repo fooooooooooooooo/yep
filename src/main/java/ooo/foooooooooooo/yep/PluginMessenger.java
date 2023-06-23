@@ -9,7 +9,7 @@ import ooo.foooooooooooo.yep.messages.IYepMessage;
 
 public class PluginMessenger {
     public static void sendMessage(EntityPlayerMP player, IYepMessage message) {
-        var name = player.getDisplayName();
+        var name = player.getCommandSenderName();
         var type = message.getType().name();
 
         String msg = String.format("%s:%s:%s", name, type, message);
