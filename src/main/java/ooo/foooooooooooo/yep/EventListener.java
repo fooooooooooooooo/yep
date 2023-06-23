@@ -31,12 +31,6 @@ public class EventListener {
         if (player.mcServer.func_147136_ar()) {
             // if (player can unlock achievement (i.e. prereqs are met) && player does NOT already have achievement)
             if (player.func_147099_x().canUnlockAchievement(achievement) && !player.func_147099_x().hasAchievementUnlocked(achievement)) {
-                // if the achievement is only sent to chat on the client
-                if (achievement.isIndependent) {
-                    Yep.LOGGER.trace("Ignoring local achievement");
-                    return;
-                }
-
                 var title = getComponentText(new ChatComponentTranslation(achievement.statId));
                 var description = getComponentText(new ChatComponentTranslation(achievement.statId + ".desc"));
 
