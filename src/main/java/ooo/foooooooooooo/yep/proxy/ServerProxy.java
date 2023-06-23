@@ -5,7 +5,7 @@ import net.minecraftforge.common.MinecraftForge;
 import ooo.foooooooooooo.yep.EventListener;
 import ooo.foooooooooooo.yep.Yep;
 
-public class ServerProxy extends CommonProxy {
+public class ServerProxy implements CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new EventListener());
