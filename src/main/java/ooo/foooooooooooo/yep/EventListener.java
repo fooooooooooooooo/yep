@@ -3,8 +3,8 @@ package ooo.foooooooooooo.yep;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.stats.Achievement;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 import ooo.foooooooooooo.yep.messages.AdvancementMessage;
@@ -31,8 +31,12 @@ public class EventListener {
         if (player.mcServer.func_147136_ar()) {
             // if (player can unlock achievement (i.e. prereqs are met) && player does NOT already have achievement)
             if (player.func_147099_x().canUnlockAchievement(achievement) && !player.func_147099_x().hasAchievementUnlocked(achievement)) {
-                var title = getComponentText(new ChatComponentTranslation(achievement.statId));
-                var description = getComponentText(new ChatComponentTranslation(achievement.statId + ".desc"));
+                var title = StatCollector.translateToLocal(achievement.statId);
+                var description = StatCollector.translateToLocal(achievement.statId + ".desc");
+
+                if (achievement.statId.equals("achievement.openInventory")) {
+                    description = description.replace("%1$s", "E");
+                }
 
                 PluginMessenger.sendMessage(player, new AdvancementMessage(title, description));
             }
