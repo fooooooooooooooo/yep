@@ -4,22 +4,20 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
-import ooo.foooooooooooo.yep.messages.IYepMessage;
+import ooo.foooooooooooo.yep.api.YepApi;
+import ooo.foooooooooooo.yep.api.YepMessage;
 
 import java.nio.charset.StandardCharsets;
 
 public class PluginMessenger {
-    public static void sendMessage(ServerPlayerEntity player, IYepMessage message) {
-        var name = player.getName().getString();
-        var type = message.getType().name();
+  public static void sendMessage(ServerPlayerEntity player, YepMessage message) {
+    Yep.LOGGER.trace("sending `%s` for player `%s`".formatted(message, message.player));
 
-        String msg = String.format("%s:%s:%s", name, type, message);
+    var serialized = YepApi.serializeMessage(message);
 
-        Yep.LOGGER.trace("sent `" + msg + "` for player `" + name + "` of type `" + type + "` with message `" + message + "`");
+    // TODO: wrappedBuffer instead of copiedBuffer is best here?
+    var byteBuf = new PacketByteBuf(Unpooled.wrappedBuffer(serialized.getBytes(StandardCharsets.UTF_8)));
 
-        // TODO: wrappedBuffer instead of copiedBuffer is best here?
-        var byteBuf = new PacketByteBuf(Unpooled.wrappedBuffer(msg.getBytes(StandardCharsets.UTF_8)));
-
-        ServerPlayNetworking.send(player, Yep.PLUGIN_CHANNEL, byteBuf);
-    }
+    ServerPlayNetworking.send(player, Yep.PLUGIN_CHANNEL, byteBuf);
+  }
 }

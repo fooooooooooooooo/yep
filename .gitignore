@@ -1,65 +1,24 @@
-# gradle
+.idea/*
+# make gradle not so angry
+!.idea/dynamic.xml
+# keep excluded dir settings
+!.idea/modules
+!.idea/modules/yep.iml
+.idea/modules/api/*
+!.idea/modules/api/yep.api.iml
+.idea/modules/fabric/*
+!.idea/modules/fabric/yep.fabric.iml
+.idea/modules/forge/*
+!.idea/modules/forge/yep.forge.iml
+.idea/modules/paper/*
+!.idea/modules/paper/yep.paper.iml
 
-.gradle/
-build/
-out/
-classes/
+.gradle
+*/.gradle
 
-# eclipse
+*/build
+*/bin
+*/run
 
-*.launch
-
-# idea
-
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# macos
-
-*.DS_Store
-
-# fabric
-
-run/
-
-# java
-
-hs_err_*.log
-replay_*.log
-*.hprof
-*.jfr
-
-.m2/
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
-
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
-
-.m2/
-run/
-.gradle/
-.idea/
-build/
+/build
+/bin

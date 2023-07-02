@@ -1,0 +1,10 @@
+plugins {
+  id 'java-library'
+}
+
+version = "$project.mod_version"
+archivesBaseName = "${project.archives_base_name}_api"
+
+jar {
+  destinationDirectory = project.outputDir
+}

@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+version = "$project.mod_version+paper-$project.minecraft_version"
+archivesBaseName = project.archives_base_name
+
+repositories {
+  maven { url 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+  compileOnly "io.papermc.paper:paper-api:$project.paper_version"
+
+  implementation project(':api')
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+  destinationDirectory = project.outputDir
+}
+
+var subs = project.substitutions
+subs.put('api_version', project.api_version)
+
+processResources {
+  filesMatching('plugin.yml') {
+    expand subs
+  }
+}

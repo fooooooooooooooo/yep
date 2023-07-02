@@ -1,16 +1,14 @@
 modLoader = "javafml"
 loaderVersion = "[46,)"
-license = "MIT"
+license = "$license"
 
 [[mods]]
-modId = "yep"
-version = "${version}"
-displayName = "yep"
+modId = "$id"
+version = "$version"
+displayName = "$name"
 logoFile = "icon.png"
-authors = "foooooooooooo, unilock"
-description = '''
-Send death / advancement messages to VelocityDiscord over the plugin channel "velocity:yep"
-'''
+authors = "$author, unilock"
+description = "$description"
 
 [[dependencies.yep]]
 modId = "forge"

@@ -5,23 +5,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class Yep extends JavaPlugin {
+  public static Yep instance;
+  public static Logger logger;
 
-    public static Yep instance;
-    public static Logger logger;
+  @Override
+  public void onEnable() {
+    instance = this;
+    logger = getServer().getLogger();
 
-    public Yep() {
-        instance = this;
-    }
+    getServer().getPluginManager().registerEvents(new EventListener(), this);
 
-    @Override
-    public void onEnable() {
-        logger = getServer().getLogger();
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
-        logger.info("Yep is enabled!");
-    }
+    logger.info("Yep is enabled!");
+  }
 
-    @Override
-    public void onDisable() {
-        logger.info("Yep is disabled!");
-    }
+  @Override
+  public void onDisable() {
+    logger.info("Yep is disabled!");
+  }
 }
