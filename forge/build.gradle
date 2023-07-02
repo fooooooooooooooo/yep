@@ -1,0 +1,51 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAccessibility
+
+apply plugin: 'dev.architectury.loom'
+apply plugin: 'io.github.juuxel.loom-quiltflower'
+
+version = "$project.mod_version+forge-$project.minecraft_version"
+archivesBaseName = project.archives_base_name
+
+dependencies {
+  minecraft "com.mojang:minecraft:$project.minecraft_version"
+  mappings "net.fabricmc:yarn:$project.yarn_mappings:v2"
+  forge "net.minecraftforge:forge:$project.forge_version"
+
+  implementation forgeDependencies(project(':api'))
+}
+
+processResources {
+  inputs.property 'version', project.mod_version
+
+  filesMatching('META-INF/mods.toml') {
+    expand project.substitutions
+  }
+}
+
+tasks.withType(JavaCompile).configureEach {
+  it.options.release = 17
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+  manifest {
+    attributes([
+      'Specification-Title'     : project.mod_id,
+      'Specification-Vendor'    : project.author,
+      'Specification-Version'   : '1',
+      'Implementation-Title'    : project.name,
+      'Implementation-Version'  : version,
+      'Implementation-Vendor'   : project.author,
+      'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    ])
+  }
+}
+
+remapJar {
+  destinationDirectory = project.outputDir
+}

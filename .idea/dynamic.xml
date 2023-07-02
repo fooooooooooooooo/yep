@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DynamicElementsStorage">
+    <option name="containingClasses">
+      <map>
+        <entry key="org.gradle.api.Project">
+          <value>
+            <DClassElement>
+              <option name="name" value="org.gradle.api.Project" />
+              <option name="myName" value="org.gradle.api.Project" />
+              <option name="myProperties">
+                <set>
+                  <DPropertyElement>
+                    <option name="name" value="archivesBaseName" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.String" />
+                    <option name="myType" value="java.lang.String" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="archivesBaseName" />
+                  </DPropertyElement>
+                  <DPropertyElement>
+                    <option name="name" value="author" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.String" />
+                    <option name="myType" value="java.lang.String" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="author" />
+                  </DPropertyElement>
+                  <DPropertyElement>
+                    <option name="name" value="mod_id" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.String" />
+                    <option name="myType" value="java.lang.String" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="mod_id" />
+                  </DPropertyElement>
+                  <DPropertyElement>
+                    <option name="name" value="mod_version" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.String" />
+                    <option name="myType" value="java.lang.String" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="mod_version" />
+                  </DPropertyElement>
+                  <DPropertyElement>
+                    <option name="name" value="substitutions" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.util.Map&lt;String,String&gt;" />
+                    <option name="myType" value="java.util.Map&lt;String,String&gt;" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="substitutions" />
+                  </DPropertyElement>
+                  <DPropertyElement>
+                    <option name="name" value="outputDir" />
+                    <option name="static" value="false" />
+                    <option name="type" value="org.gradle.api.file.Directory" />
+                    <option name="myType" value="org.gradle.api.file.Directory" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="outputDir" />
+                  </DPropertyElement>
+                </set>
+              </option>
+            </DClassElement>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

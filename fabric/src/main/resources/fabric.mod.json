@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "$id",
+  "version": "$version",
+
+  "name": "$name",
+  "description": "$description",
+  "authors": ["$author", "unilock"],
+  "contact": {
+    "homepage": "https://github.com/fooooooooooooooo/yep",
+    "sources": "https://github.com/fooooooooooooooo/yep"
+  },
+
+  "license": "$license",
+  "icon": "assets/yep/icon.png",
+
+  "environment": "server",
+  "entrypoints": {
+    "server": ["ooo.foooooooooooo.yep.Yep"]
+  },
+  "mixins": ["yep.mixins.json"],
+
+  "depends": {
+    "fabricloader": "*",
+    "fabric-api": "*",
+    "minecraft": "~1.20",
+    "java": ">=17"
+  }
+}

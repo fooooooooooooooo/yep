@@ -1,0 +1,10 @@
+#file: noinspection YAMLSchemaValidation
+
+name: $name
+version: $version
+main: ooo.foooooooooooo.yep.Yep
+api-version: $api_version
+prefix: $id
+authors: [$author]
+description: $description
+website: $website

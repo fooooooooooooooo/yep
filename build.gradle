@@ -1,0 +1,33 @@
+plugins {
+  id 'dev.architectury.loom' version '1.1-SNAPSHOT' apply false
+  id 'io.github.juuxel.loom-quiltflower' version '1.10.0' apply false
+}
+
+apply plugin: 'base'
+
+var outputDir = project.layout.projectDirectory.dir("build/libs")
+
+var Map<String, String> substitutions = [
+  'id'         : project.mod_id,
+  'version'    : project.mod_version,
+  'name'       : project.mod_name,
+  'description': project.description,
+  'author'     : project.author,
+  'license'    : project.license,
+  'website'    : project.website,
+  'sources'    : project.sources,
+]
+
+subprojects {
+  group = project.maven_group
+  project.ext.outputDir = outputDir
+  project.ext.substitutions = substitutions
+
+  tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+  }
+}
+
+clean.doFirst {
+  delete "${rootDir}/build/"
+}
