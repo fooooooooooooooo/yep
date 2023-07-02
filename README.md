@@ -1,4 +1,4 @@
-# yep-paper
+# yep-forge
 
 Companion Paper plugin for [VelocityDiscord](https://github.com/fooooooooooooooo/VelocityDiscord)
 
