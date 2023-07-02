@@ -1,0 +1,36 @@
+{
+    "schemaVersion": 1,
+    "id": "yep",
+    "version": "${version}",
+
+    "name": "Yep",
+    "description": "Forwards death messages and similar events to Velocity proxy plugins",
+    "authors": [
+        "fooooooooooooooo",
+        "unilock"
+    ],
+    "contact": {
+        "homepage": "https://github.com/fooooooooooooooo/yep/tree/fabric/1.20",
+        "sources": "https://github.com/fooooooooooooooo/yep/tree/fabric/1.20"
+    },
+
+    "license": "MIT",
+    "icon": "assets/yep/icon.png",
+
+    "environment": "server",
+    "entrypoints": {
+        "server": [
+            "ooo.foooooooooooo.yep.Yep"
+        ]
+    },
+    "mixins": [
+        "yep.mixins.json"
+    ],
+
+    "depends": {
+        "fabricloader": "*",
+        "fabric-api": "*",
+        "minecraft": "~1.20",
+        "java": ">=17"
+    }
+}
